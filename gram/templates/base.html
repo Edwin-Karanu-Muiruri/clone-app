@@ -1,0 +1,23 @@
+{% load bootstrap %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+    <title>el Gram - {{title}} </title>
+    {% else %}
+    <title>el Gram</title>
+    {% endif %}
+
+    {% block styles %}
+        {% bootstrap_css %}
+        <link rel="stylesheet" href="{% static 'css/base.css %}">
+    {% endblock %}
+</head>
+<body>
+    
+</body>
+</html>
