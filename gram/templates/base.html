@@ -1,4 +1,4 @@
-{% load bootstrap %}
+{% load bootstrap4 %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -14,10 +14,10 @@
 
     {% block styles %}
         {% bootstrap_css %}
-        <link rel="stylesheet" href="{% static 'css/base.css %}">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 </head>
 <body>
-    
+    {% include 'navbar.html' %}
 </body>
 </html>
