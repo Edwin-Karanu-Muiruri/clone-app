@@ -1,0 +1,23 @@
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% if title %}
+    <title>{{title}}</title>
+    {% endif %}
+
+    {% block styles %}
+        {% bootstrap_css %}
+    {% endblock %}
+</head>
+<body>
+    {% block content %} {% endbloock %}
+    {% block scripts %}
+        {% bootstrap_javascript %}
+    {% endblock %}   
+</body>
+</html>
