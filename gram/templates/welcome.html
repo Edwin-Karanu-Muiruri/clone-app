@@ -1,8 +1,36 @@
-{% extends 'base.html' %}
+{% extends 'base.html'%}
+{% load bootstrap4 %}
 {% load static %}
 
 {% block content %}
+<div class="container-fluid" id="welcome">
+    <h1 class="text-center">Welcome to Photo Booth</h1>
+</div>
+<div class="container-fluid" id="welcomeImages">
+    <img src="..." class="img-fluid" alt="Welcome Images">
+</div>
+<div class="container-fluid" id="discover">
+    <div class="row container-fluid">
+        <div class="col-md-10 container-fluid">
+            <h2 class="text-center">Discover,create,like and comment</h2>
+        </div>
+        <div class="col-md-10 container-fluid">
+            <h3 class="text-center">Popular</h3>
+        </div>
+        <div class="col-md-10 container-fluid">
+            <h3 class="text-center">People</h3>
+        </div>
+    </div>
+</div>
 <div class="container-fluid">
-    <h1>Welcome to el Gram</h1>
+    <div class="col-md-10 container-fluid">
+        <footer>About</footer>
+        <footer>Help</footer>
+        <footer>Jobs</footer>
+        <footer>Privacy</footer>
+        <footer>Terms</footer>
+        <footer>Language</footer>
+        <p class="text-center">© 2020 PHOTO BOOTH</p>
+    </div>
 </div>
 {% endblock %}
