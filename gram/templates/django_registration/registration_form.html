@@ -1,5 +1,5 @@
+{% extends 'base.html' %}
 {% load bootstrap4 %}
-
 {% block content %}
 <div class="container">
     <div class="row">
@@ -10,7 +10,7 @@
             {% endif %} -->
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="text-center">Register</h3>
+                    <h3 class="text-center">Sign Up to Photo Booth</h3>
                 </div>
                 <div class="panel-body">
                     <form action="/accounts/register/" method="POST">
@@ -18,6 +18,7 @@
                         {% bootstrap_form form %}
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary btn-sm" value="Sign Up">
+                            <p>Already have an account? <a href="/accounts/login/">Log In</a></p>
                         </div>
                         <input type="hidden" name="next" value="{{next}}">
                     </form>
