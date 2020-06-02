@@ -4,9 +4,8 @@ from .models import Image,Profile
 class ImageUploadForm(ModelForm):
     class Meta:
         model = Image
-        exclude = ['comments',]
+        exclude = ['comments','likes','profile']
 
 class ProfileEditForm(ModelForm):
     class Meta:
         model = Profile
-        
