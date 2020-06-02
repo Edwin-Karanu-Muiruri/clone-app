@@ -43,4 +43,16 @@ def image_upload(request):
     else:
         form.ImageUploadForm()
     return render(request,'upload.html',{'form':form})
+
+@login_required
+def like_image(request,id):
+    image = Image.objects.get(pk=id)
+    liked = False
+    if image.likes.filter(id=request.user.id).exists():
+        image.likes.remove(request.user)
+        liked = False
+    else:
+        image.likes.add(request.user)
+        liked = True
+    return HttpResponseRedirect(reverse('get_images',args=[int(image.id)]))
     
