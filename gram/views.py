@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from django import forms
+from django.http import HttpResponse
+from .models import Image
 
 # Create your views here.
 def welcome(request):
@@ -7,3 +10,4 @@ def home(request):
     return render(request,'home.html')
 def profile(request):
     return render(request,'profile.html')
+

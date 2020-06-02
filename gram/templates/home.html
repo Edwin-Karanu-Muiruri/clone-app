@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
+{% load cloudinary %}
 
 {% block content%}
 <div class="container-fluid">
     <h2 class="text-center">My feed</h2>
     <div class="col-md-10">
+        {% cloudinary photo.image format="jpg" width="120"height="80" crop="fill"%}
         <!-- for images in followed accounts, display feed -->
     </div>
 </div>
