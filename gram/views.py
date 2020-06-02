@@ -23,6 +23,24 @@ def profile(request):
     return render(request,'profile.html',{'profile':profile,'images':images})
 
 @login_required
+def update_profile(request):
+    current_user = request.user
+    if request.method == "POST":
+        form = EditProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile_photo = form.cleaned_data['profile_photo']
+            bio  = form.cleaned_data['bio']
+            updated_profile = Profile.objects.get(user= current_user)
+            updated_profile.profile_photo = profile_photo
+            updated_profile.bio = bio
+            updated_profile.save()
+        return redirect('profile')
+    else:
+        form = EditProfileForm()
+    return render(request, 'update_profile.html', {"form": form})
+
+
+@login_required
 def comment(request,id):
     image = Image.objects.get(pk=id)
     review = request.GET.get('comment')
@@ -45,6 +63,17 @@ def image_upload(request):
     return render(request,'upload.html',{'form':form})
 
 @login_required
+def get_images(request,id):
+    image = Image.objects.get(pk=id)
+    comments = Comment.get_image_comment(image)
+    total_likes = image.like_count()
+    liked = False
+    if image.likes.filter(id = request.user.id).exists():
+        liked = True
+    return render(request,'post.html',{'image':image,'comments':comments,'total_likes':total_likes,'liked':liked})    
+
+
+@login_required
 def like_image(request,id):
     image = Image.objects.get(pk=id)
     liked = False
@@ -55,4 +84,3 @@ def like_image(request,id):
         image.likes.add(request.user)
         liked = True
     return HttpResponseRedirect(reverse('get_images',args=[int(image.id)]))
-    
