@@ -35,6 +35,29 @@ class Image(models.Model):
     likes = models.ManyToManyField(User,related_name='posts')
     comment = models.TextField(null=True,blank=True)
 
+    def __str__(self):
+        return self.image_name
+    
+    def save_image(self):
+        self.save()
+
+    def delete_image(self):
+        self.delete()
+        
+    def likes_counter(self):
+        return self.likes.count()
+
+    @classmethod
+    def update_caption(cls,id,caption):
+        cls.objects.filter(id=id).update(caption=caption)
+        updated_caption = cls.objects.get(id=id)
+        return updated_caption
+
+    @classmethod
+    def get_images(cls,profile):
+        return cls.objects.filter(profile=profile)
+
+
 class Comment(models.Model):
     image = models.ForeignKey(Image,on_delete = models.CASCADE,related_name='comments')
     review = models.TextField()
