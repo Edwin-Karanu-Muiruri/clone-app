@@ -30,3 +30,17 @@ def comment(request,id):
     comment = Comment(image = image, review = review,user = user)
     comment.save_comment()
     return redirect(get_images,id=id)
+
+@login_required
+def image_upload(request):
+    if request.method == "POST":
+        form = ImageUploadForm(request.POST,request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.profile = request.user
+            image.save()
+        return redirect('home')
+    else:
+        form.ImageUploadForm()
+    return render(request,'upload.html',{'form':form})
+    
