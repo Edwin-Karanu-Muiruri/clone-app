@@ -22,3 +22,11 @@ def profile(request):
     images = Image.get_images(current_user)
     return render(request,'profile.html',{'profile':profile,'images':images})
 
+@login_required
+def comment(request,id):
+    image = Image.objects.get(pk=id)
+    review = request.GET.get('comment')
+    user = request.user
+    comment = Comment(image = image, review = review,user = user)
+    comment.save_comment()
+    return redirect(get_images,id=id)
