@@ -84,3 +84,14 @@ def like_image(request,id):
         image.likes.add(request.user)
         liked = True
     return HttpResponseRedirect(reverse('get_images',args=[int(image.id)]))
+
+@login_required
+def search_results(request):
+    if 'user' in request.GET and request.GET['user']:
+        searched_term = request.GET.get('user')
+        profiles = Profile.search_user(searched_term)
+        message = f"{searched_term}"
+        return render(request, 'search.html', {'message':message,'profiles':profiles})
+    else:
+        message = "Enter something to search"
+        return render(request, 'search.html',{'message':message})
