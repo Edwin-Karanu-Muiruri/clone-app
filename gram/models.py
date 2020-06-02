@@ -43,7 +43,7 @@ class Image(models.Model):
 
     def delete_image(self):
         self.delete()
-        
+
     def likes_counter(self):
         return self.likes.count()
 
@@ -62,3 +62,16 @@ class Comment(models.Model):
     image = models.ForeignKey(Image,on_delete = models.CASCADE,related_name='comments')
     review = models.TextField()
     date_pub = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.content
+
+    def save_comment(self):
+        self.save()
+
+    def delete_comment(self):
+        self.delete()
+
+    @classmethod
+    def get_image_comment(cls,image):
+        return cls.objects.filter(image =image)
