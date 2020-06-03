@@ -2,10 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Profile(models.Model):
-    profile_photo = models.ImageField(upload_to = 'images/',null = True,blank = True)
+    profile_photo = CloudinaryField('image')
     bio = models.TextField()
 
     def __str__(self):
@@ -25,10 +26,8 @@ class Profile(models.Model):
         instance.Profile.save()
 
 
-
-
 class Image(models.Model):
-    image = models.ImageField(upload_to = 'images/')
+    image = CloudinaryField('image')
     image_name = models.CharField(max_length = 50)
     caption = models.TextField()
     profile = models.ForeignKey(User,on_delete = models.CASCADE)
