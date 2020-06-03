@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+
+    <div class="row">
+        {% if profiles%}
+        {% for profile in profiles %}
+        <div class="search">
+            <h2>{{ profile.username }}</h2>
+            <button class="btn btn-success">Follow</button>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h2> No profiles match that name {{message}}</h2>
+        {% endif %}
+
+    </div>
+
+</div>
+{% endblock %}

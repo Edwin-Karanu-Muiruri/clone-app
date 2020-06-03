@@ -1,4 +1,33 @@
 {% extends 'base.html' %}
-{% load cloudinary %}
 
 {% block content %}
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Upload Image</title>
+    {{form.media}}
+
+    {% block styles %}
+    {% bootstrap_css %}
+    {% endblock %}
+
+</head>
+
+<body>
+    <div class="container">
+        <h2> Upload an Image</h2>
+        <form action="{%url 'update_image'%}" method="post" enctype="multipart/form-data">
+            {%csrf_token%}
+
+            {% bootstrap_form form%}
+            <input type="submit" class="btn btn-success btn-lg" value="Post">
+        </form>
+    </div>
+</body>
+
+</html>

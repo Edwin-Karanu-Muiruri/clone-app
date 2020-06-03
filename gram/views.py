@@ -9,11 +9,11 @@ from django.contrib.auth.models import User
 # Create your views here.
 def welcome(request):
     images = Image.objects.all()
-    return render(request,'welcome.html'{'images':images})
+    return render(request,'welcome.html',{'images':images})
 
 def home(request):
     images = Image.objects.all()
-    return render(request,'home.html'{'images':images})
+    return render(request,'home.html',{'images':images})
 
 @login_required    
 def profile(request):

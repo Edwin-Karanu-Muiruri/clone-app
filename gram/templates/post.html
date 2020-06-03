@@ -1,0 +1,57 @@
+{% extends 'base.html'%}
+{% block content %}
+
+
+<div class="container">
+    <div class="image-det">
+        <h2> {{image.profile}} </h2>
+        <hr>
+        <p>{{image.caption}}</p>
+        <img src="{{image.image.url}}" style="width:400px; height:400px;object-fit:cover" alt="">
+
+        {% if liked %}
+        <form action="{% url 'like_image' image.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" name="image_id" value={{image.id}} class="btn btn-danger btn-lg">
+                Unlike</button>
+        </form>
+        {% else %}
+
+        <form action="{% url 'like_image' image.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" name="image_id" value={{image.id}} class="btn btn-success btn-lg ">
+                Like </button>
+
+        </form>
+        {% endif %}
+
+        <p> {{total_likes}} likes </p>
+
+
+
+        <div class=" comment-form">
+            <form action="{% url 'comment' image.id%}" role="comment" enctype="multipart/form-data">
+                {%csrf_token%}
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Comment" name="comment">
+                </div>
+
+                <div class="input-group-btn">
+                    <button class="btn btn-outline-info" type="submit"> Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% for comment in comments %}
+    <h3 style=" font-size: 20px; color: black; margin-top: 20px;"><i class="fa fa-user" aria-hidden="true">
+            {{comment.user}}</i></h3>
+    <p>{{comment.content}}</p>
+
+    <p class="text-muted" style="font-size: 10px;">posted {{comment.pub_date | timesince}} ago </p>
+    <hr>
+    {% endfor %}
+    {%endblock%}
+</div>
+</div>
+</div>
