@@ -6,6 +6,7 @@ from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Profile(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE, default = None)
     profile_photo = CloudinaryField('image')
     bio = models.TextField()
 
@@ -23,7 +24,7 @@ class Profile(models.Model):
     
     @receiver(post_save,sender=User)
     def save_profile(sender,instance, **kwargs):
-        instance.Profile.save()
+        instance.profile.save()
 
 
 class Image(models.Model):
