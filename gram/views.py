@@ -57,9 +57,9 @@ def image_upload(request):
             image = form.save(commit=False)
             image.profile = request.user
             image.save()
-        return redirect('home')
+        return redirect('/home/')
     else:
-        form.ImageUploadForm()
+        form = ImageUploadForm()
     return render(request,'upload.html',{'form':form})
 
 @login_required

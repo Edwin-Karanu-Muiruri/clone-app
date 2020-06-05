@@ -4,21 +4,45 @@
 {% block content%}
 <div class="container-fluid">
     <h2 class="text-center">My feed</h2>
-    {% for image in images %}
-    <div class="col-md-6">
+    <div class="imageUploads">
         <!-- for images in followed accounts, display feed -->
-        <div class="card" style="margin-top: 20px; margin-bottom: 20px;">
-            <div class="card-header">
-                <h3 class="text-center">{{image.profile}}</h3>
+        <div class="row">
+            {% for image in images %}
+            <div class="card col-md-4" style="margin-top: 20px; margin-bottom: 20px;">
+                <div class="card-header">
+                    <h3 class="float: left">{{image.profile}}</h3>
+                </div>
+                <div class="card-body">
+                    <p style="float: right;">{{image.caption}}</p>
+                </div>
+                <div class="card-body">
+                    <img src="{{image.image}}" width="80px" class="card-img-top" class="img-responsive" alt="img">
+                </div>
             </div>
-            <div class="card-body">
-                <p style="float: right;">{{image.caption}}</p>
+            <div class="card col-md-4" style="margin-top: 20px; margin-bottom: 20px;">
+                <div class="card-header">
+                    <h3 class="float: left">{{image.profile}}</h3>
+                </div>
+                <div class="card-body">
+                    <p style="float: right;">{{image.caption}}</p>
+                </div>
+                <div class="card-body">
+                    <img src="{{image.image}}" width="80px" class="card-img-top" class="img-responsive" alt="img">
+                </div>
             </div>
-            <div class="card-body">
-                <a href="{% url 'get_images' image.id%}"><img src="{{image.image}}" width="80px" class="card-img-top" class="img-responsive" alt="img"></a>
+            <div class="card col-md-4" style="margin-top: 20px; margin-bottom: 20px;">
+                <div class="card-header">
+                    <h3 class="float: left">{{image.profile}}</h3>
+                </div>
+                <div class="card-body">
+                    <p style="float: right;">{{image.caption}}</p>
+                </div>
+                <div class="card-body">
+                    <img src="{{image.image}}" width="80px" class="card-img-top" class="img-responsive" alt="img">
+                </div>
             </div>
+            {% endfor %}
         </div>
     </div>
-    {% endfor %}
 </div>
 {% endblock %}
