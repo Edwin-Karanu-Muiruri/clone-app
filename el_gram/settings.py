@@ -60,7 +60,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'el_gram.urls'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/home'
 
 TEMPLATES = [
     {

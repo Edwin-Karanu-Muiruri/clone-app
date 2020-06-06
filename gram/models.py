@@ -57,12 +57,15 @@ class Image(models.Model):
     def get_images(cls,profile):
         return cls.objects.filter(profile=profile)
 
+    def likes_count(self):
+        return self.likes.count()
+
 
 class Comment(models.Model):
     image = models.ForeignKey(Image,on_delete = models.CASCADE,related_name='comments')
     review = models.TextField()
     date_pub = models.DateTimeField(auto_now_add=True)
-
+    user = models.ForeignKey(User,on_delete = models.CASCADE, default= None)
     def __str__(self):
         return self.content
 

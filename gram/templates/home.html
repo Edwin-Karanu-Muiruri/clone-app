@@ -16,29 +16,7 @@
                     <p style="float: right;">{{image.caption}}</p>
                 </div>
                 <div class="card-body">
-                    <img src="{{image.image}}" width="80px" class="card-img-top" class="img-responsive" alt="img">
-                </div>
-            </div>
-            <div class="card col-md-4" style="margin-top: 20px; margin-bottom: 20px;">
-                <div class="card-header">
-                    <h3 class="float: left">{{image.profile}}</h3>
-                </div>
-                <div class="card-body">
-                    <p style="float: right;">{{image.caption}}</p>
-                </div>
-                <div class="card-body">
-                    <img src="{{image.image}}" width="80px" class="card-img-top" class="img-responsive" alt="img">
-                </div>
-            </div>
-            <div class="card col-md-4" style="margin-top: 20px; margin-bottom: 20px;">
-                <div class="card-header">
-                    <h3 class="float: left">{{image.profile}}</h3>
-                </div>
-                <div class="card-body">
-                    <p style="float: right;">{{image.caption}}</p>
-                </div>
-                <div class="card-body">
-                    <img src="{{image.image}}" width="80px" class="card-img-top" class="img-responsive" alt="img">
+                    <a href="{% url 'get_images' image.id%}"><img src="{{image.image.url}}" width="80px" class="card-img-top" class="img-responsive" alt="img"></a>
                 </div>
             </div>
             {% endfor %}

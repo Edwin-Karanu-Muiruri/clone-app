@@ -5,9 +5,34 @@
     <div class="profile">
         <h3 class="text-center">My Profile</h3>
         <!-- for current user, display account information: profile pic and bio -->
+        <img src="{{profile.profile_photo.url" class="avatar" alt="profile photo">
+        <h3>{{profile.user}}</h3>
     </div>
+    {% if profile.bio %}
+    <div>
+    <h4>Bio</h4>
+    <h4>{{profile.bio}}</h4>
+    </div>
+    {% endif %}
+    <button><a href="{% url 'update_profile' %}">Edit profile</a></button>
+    <br>
+    <br>
+    <br>
     <div class="myImages">
         <h3 class="text-center">My Posts</h3>
+        {% for image in images %}
+        <div class="card col-md-4" style="margin-top: 20px; margin-bottom: 20px;">
+            <div class="card-header">
+                <h3 class="float: left">{{image.profile}}</h3>
+            </div>
+            <div class="card-body">
+                <p style="float: right;">{{image.caption}}</p>
+            </div>
+            <div class="card-body">
+                <a href="{% url 'get_images' image.id%}"><img src="{{image.image.url}}" width="80px" class="card-img-top" class="img-responsive" alt="img"></a>
+            </div>
+        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

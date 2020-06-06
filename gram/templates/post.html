@@ -5,9 +5,10 @@
 <div class="container">
     <div class="image-det">
         <h2> {{image.profile}} </h2>
+        <img src="{{image.image.url}}" style="width:400px; height:400px;object-fit:cover" alt="">
         <hr>
         <p>{{image.caption}}</p>
-        <img src="{{image.image.url}}" style="width:400px; height:400px;object-fit:cover" alt="">
+        <p> {{total_likes}} likes </p>
 
         {% if liked %}
         <form action="{% url 'like_image' image.id %}" method="POST">
@@ -25,7 +26,6 @@
         </form>
         {% endif %}
 
-        <p> {{total_likes}} likes </p>
 
 
 
@@ -46,9 +46,9 @@
     {% for comment in comments %}
     <h3 style=" font-size: 20px; color: black; margin-top: 20px;"><i class="fa fa-user" aria-hidden="true">
             {{comment.user}}</i></h3>
-    <p>{{comment.content}}</p>
+    <p>{{comment.review}}</p>
 
-    <p class="text-muted" style="font-size: 10px;">posted {{comment.pub_date | timesince}} ago </p>
+    <p class="text-muted" style="font-size: 10px;">posted {{comment.date_pub | timesince}} ago </p>
     <hr>
     {% endfor %}
     {%endblock%}

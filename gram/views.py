@@ -66,7 +66,7 @@ def image_upload(request):
 def get_images(request,id):
     image = Image.objects.get(pk=id)
     comments = Comment.get_image_comment(image)
-    total_likes = image.like_count()
+    total_likes = image.likes_count()
     liked = False
     if image.likes.filter(id = request.user.id).exists():
         liked = True
